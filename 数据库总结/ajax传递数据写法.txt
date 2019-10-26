@@ -1,0 +1,21 @@
+<script src="./static/js/jquery.min.js"></script>
+
+<script>
+$(function(){
+	$("#submit").click(function(){
+		var username = $(this).siblings('input[name=username]').val()
+		var password = $(this).siblings('input[name=password]').val()
+		$.ajax({
+		url:{% url 'order:index' %},
+		type:'post',
+  		data :{'username':username,'password':password},
+		datatype:json,
+		headers:{'X-CSRFToken':"{% csrf_token %}"},
+		success: function(data){
+			console.log(data)
+			}
+		})
+
+	})
+
+})
